@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #7c3aed; /* Rich Purple */
+            --primary: #7c3aed;
+            /* Rich Purple */
             --primary-dark: #5b21b6;
-            --secondary: #db2777; /* Pink/Magenta for gradients */
-            --accent: #f59e0b; /* Gold for highlights */
+            --secondary: #db2777;
+            /* Pink/Magenta for gradients */
+            --accent: #f59e0b;
+            /* Gold for highlights */
             --bg-light: #f5f3ff;
             --text-dark: #1e1b4b;
             --text-gray: #4b5563;
@@ -35,7 +39,8 @@
         }
 
         /* Ambient Background Effects */
-        body::before, body::after {
+        body::before,
+        body::after {
             content: '';
             position: fixed;
             width: 600px;
@@ -45,11 +50,13 @@
             z-index: -1;
             animation: float 20s infinite ease-in-out;
         }
+
         body::before {
             background: rgba(124, 58, 237, 0.3);
             top: -100px;
             left: -100px;
         }
+
         body::after {
             background: rgba(219, 39, 119, 0.2);
             bottom: -100px;
@@ -58,13 +65,27 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(50px, 50px); }
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(50px, 50px);
+            }
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .container {
@@ -82,27 +103,38 @@
         /* Branding Bar */
         .brand-bar {
             background: #2e1065;
+            /* Deep rich purple/navy */
             color: white;
-            padding: 10px 30px;
+            padding: 16px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             letter-spacing: 0.5px;
+            border-radius: 24px 24px 0 0;
+            /* Match container radius */
         }
 
         .brand-link {
-            color: #e9d5ff;
+            color: #a78bfa;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
+            font-weight: 600;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .brand-link:hover {
             color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
             text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
         }
 
@@ -253,7 +285,10 @@
             opacity: 0.8;
             transition: opacity 0.2s;
         }
-        .tag-remove:hover { opacity: 1; }
+
+        .tag-remove:hover {
+            opacity: 1;
+        }
 
         .tag-input {
             border: none !important;
@@ -278,7 +313,10 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .clear-all-tags:hover { background: #fecaca; }
+
+        .clear-all-tags:hover {
+            background: #fecaca;
+        }
 
         /* Custom Select */
         .custom-select {
@@ -342,7 +380,9 @@
             box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
         }
 
-        .btn:active { transform: translateY(0); }
+        .btn:active {
+            transform: translateY(0);
+        }
 
         .btn-secondary {
             background: white;
@@ -350,14 +390,16 @@
             border: 2px solid #e5e7eb;
             box-shadow: none;
         }
+
         .btn-secondary:hover {
             background: #f9fafb;
             border-color: #d1d5db;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         .btn-curl {
-            background: #1e1b4b; /* Dark Navy for terminal feel */
+            background: #1e1b4b;
+            /* Dark Navy for terminal feel */
             box-shadow: 0 4px 15px rgba(30, 27, 75, 0.3);
         }
 
@@ -371,7 +413,10 @@
             display: none;
             animation: slideUp 0.5s ease-out;
         }
-        .results.show { display: block; }
+
+        .results.show {
+            display: block;
+        }
 
         .results h3 {
             color: var(--primary-dark);
@@ -399,7 +444,8 @@
 
         /* JSON Output */
         .json-output {
-            background: #1e1b4b; /* Code background */
+            background: #1e1b4b;
+            /* Code background */
             border-radius: 12px;
             padding: 20px;
             margin-top: 20px;
@@ -407,8 +453,11 @@
             color: #a5b4fc;
             overflow: hidden;
         }
-        .json-output.show { display: block; }
-        
+
+        .json-output.show {
+            display: block;
+        }
+
         .json-output h3 {
             color: #fff;
             border-bottom: 1px solid #312e81;
@@ -433,13 +482,28 @@
             border: none;
             transition: all 0.2s;
         }
-        
+
         .btn-copy {
             background: var(--primary);
             color: white;
             margin-top: 15px;
         }
-        .btn-copy:hover { background: var(--primary-dark); }
+
+        .btn-copy:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-share {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 15px;
+            margin-left: 10px;
+        }
+
+        .btn-share:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
 
         /* Autocomplete */
         .autocomplete-dropdown {
@@ -451,13 +515,16 @@
             border: 1px solid #e5e7eb;
             border-top: none;
             border-radius: 0 0 12px 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             max-height: 250px;
             overflow-y: auto;
             z-index: 100;
             display: none;
         }
-        .autocomplete-dropdown.show { display: block; }
+
+        .autocomplete-dropdown.show {
+            display: block;
+        }
 
         .autocomplete-item {
             padding: 12px 16px;
@@ -465,8 +532,16 @@
             transition: background 0.2s;
             font-size: 14px;
         }
-        .autocomplete-item:hover { background: #f3e8ff; color: var(--primary); }
-        .autocomplete-item.selected { background: var(--primary); color: white; }
+
+        .autocomplete-item:hover {
+            background: #f3e8ff;
+            color: var(--primary);
+        }
+
+        .autocomplete-item.selected {
+            background: var(--primary);
+            color: white;
+        }
 
         /* Loading & Error */
         .loading {
@@ -476,7 +551,10 @@
             font-weight: 600;
             display: none;
         }
-        .loading.show { display: block; }
+
+        .loading.show {
+            display: block;
+        }
 
         .error {
             background: #fee2e2;
@@ -487,7 +565,10 @@
             display: none;
             border: 1px solid #fca5a5;
         }
-        .error.show { display: block; }
+
+        .error.show {
+            display: block;
+        }
 
         /* Analysis Box */
         .analysis-info {
@@ -502,15 +583,22 @@
 </head>
 
 <body>
-    <div class="brand-bar">
-        <div>Welcome, <span style="font-weight: 700; color: #fff;">Lead Hunter</span></div>
-        <a href="https://adityamalur.com" target="_blank" class="brand-link">
-            <span>Powered by Aditya Malur</span>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-        </a>
-    </div>
+
 
     <div class="container">
+        <div class="brand-bar">
+            <div>Welcome, <span style="font-weight: 700; color: #fff;">Lead Hunter</span></div>
+            <a href="https://adityamalur.com" target="_blank" class="brand-link">
+                <span>Powered by Aditya Malur</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+            </a>
+        </div>
+
         <div class="header">
             <h1>Get Leads That Convert</h1>
             <p>An AI system to identify, qualify, and structure high-intent leads.</p>
@@ -525,16 +613,20 @@
                     <div class="form-group">
                         <label for="firstName">First Name</label>
                         <div class="tag-input-container" id="fnameTagContainer">
-                            <button type="button" class="clear-all-tags" id="clearFName" style="display: none;">Clear</button>
-                            <input type="text" class="tag-input" id="fnameInput" placeholder="Type name and press Enter...">
+                            <button type="button" class="clear-all-tags" id="clearFName"
+                                style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="fnameInput"
+                                placeholder="Type name and press Enter...">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
                         <div class="tag-input-container" id="lnameTagContainer">
-                            <button type="button" class="clear-all-tags" id="clearLName" style="display: none;">Clear</button>
-                            <input type="text" class="tag-input" id="lnameInput" placeholder="Type name and press Enter...">
+                            <button type="button" class="clear-all-tags" id="clearLName"
+                                style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="lnameInput"
+                                placeholder="Type name and press Enter...">
                         </div>
                     </div>
                 </div>
@@ -545,8 +637,10 @@
                     <div class="form-group">
                         <label for="personTitle">Specific Titles</label>
                         <div class="tag-input-container" id="titleTagContainer">
-                            <button type="button" class="clear-all-tags" id="clearTitles" style="display: none;">Clear All</button>
-                            <input type="text" class="tag-input" id="titleInput" placeholder="e.g. CEO, Marketing Manager...">
+                            <button type="button" class="clear-all-tags" id="clearTitles" style="display: none;">Clear
+                                All</button>
+                            <input type="text" class="tag-input" id="titleInput"
+                                placeholder="e.g. CEO, Marketing Manager...">
                         </div>
                     </div>
 
@@ -569,8 +663,10 @@
                     <div class="form-group">
                         <label for="personCountry">Person Country</label>
                         <div class="tag-input-container" id="personCountryTagContainer" style="position: relative;">
-                            <button type="button" class="clear-all-tags" id="clearPersonCountries" style="display: none;">Clear</button>
-                            <input type="text" class="tag-input" id="personCountryInput" placeholder="Search countries...">
+                            <button type="button" class="clear-all-tags" id="clearPersonCountries"
+                                style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="personCountryInput"
+                                placeholder="Search countries...">
                             <div class="autocomplete-dropdown" id="personCountryDropdown"></div>
                         </div>
                     </div>
@@ -578,7 +674,8 @@
                     <div class="form-group">
                         <label for="personState">Person State/Region</label>
                         <div class="tag-input-container" id="personStateTagContainer" style="position: relative;">
-                            <button type="button" class="clear-all-tags" id="clearPersonStates" style="display: none;">Clear</button>
+                            <button type="button" class="clear-all-tags" id="clearPersonStates"
+                                style="display: none;">Clear</button>
                             <input type="text" class="tag-input" id="personStateInput" placeholder="Search states...">
                             <div class="autocomplete-dropdown" id="personStateDropdown"></div>
                         </div>
@@ -591,7 +688,8 @@
                     <div class="form-group">
                         <label for="industry">Industry</label>
                         <div class="tag-input-container" id="industryTagContainer" style="position: relative;">
-                            <button type="button" class="clear-all-tags" id="clearIndustry" style="display: none;">Clear</button>
+                            <button type="button" class="clear-all-tags" id="clearIndustry"
+                                style="display: none;">Clear</button>
                             <input type="text" class="tag-input" id="industryInput" placeholder="Search industries...">
                             <div class="autocomplete-dropdown" id="industryDropdown"></div>
                         </div>
@@ -599,9 +697,11 @@
 
                     <div class="form-group">
                         <label for="technology">Technology Stack</label>
-                         <div class="tag-input-container" id="technologyTagContainer" style="position: relative;">
-                            <button type="button" class="clear-all-tags" id="clearTechnology" style="display: none;">Clear</button>
-                            <input type="text" class="tag-input" id="technologyInput" placeholder="e.g., React, Salesforce, HubSpot...">
+                        <div class="tag-input-container" id="technologyTagContainer" style="position: relative;">
+                            <button type="button" class="clear-all-tags" id="clearTechnology"
+                                style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="technologyInput"
+                                placeholder="e.g., React, Salesforce, HubSpot...">
                             <div class="autocomplete-dropdown" id="technologyDropdown"></div>
                         </div>
                     </div>
@@ -611,7 +711,7 @@
                         <div class="custom-select" id="employeeSizeSelect"></div>
                         <div class="select-tags-container" id="employeeSizeTags"></div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="revenue">Revenue Range</label>
                         <div class="custom-select" id="revenueSelect"></div>
@@ -631,16 +731,20 @@
                     <div class="form-group">
                         <label for="industryKeywords">Industry Keywords</label>
                         <div class="tag-input-container" id="industryKeywordsTagContainer">
-                            <button type="button" class="clear-all-tags" id="clearIndustryKeywords" style="display: none;">Clear</button>
-                            <input type="text" class="tag-input" id="industryKeywordsInput" placeholder="e.g., SaaS, B2B, Fintech...">
+                            <button type="button" class="clear-all-tags" id="clearIndustryKeywords"
+                                style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="industryKeywordsInput"
+                                placeholder="e.g., SaaS, B2B, Fintech...">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="companyDomain">Specific Domains</label>
                         <div class="tag-input-container" id="domainTagContainer">
-                            <button type="button" class="clear-all-tags" id="clearDomains" style="display: none;">Clear</button>
-                            <input type="text" class="tag-input" id="domainInput" placeholder="e.g., google.com, stripe.com...">
+                            <button type="button" class="clear-all-tags" id="clearDomains"
+                                style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="domainInput"
+                                placeholder="e.g., google.com, stripe.com...">
                         </div>
                     </div>
 
@@ -704,20 +808,22 @@
             <div id="analysisSection"></div>
 
             <div style="display: flex; gap: 15px; margin-top: 25px;">
-                <button type="button" class="btn btn-json" id="generateJsonBtn" style="flex: 1; margin-top: 0;">📋 Generate Payload JSON</button>
+                <button type="button" class="btn btn-json" id="generateJsonBtn" style="flex: 1; margin-top: 0;">📋
+                    Generate JSON </button>
             </div>
 
             <div class="json-output" id="jsonOutput">
-                <h3 id="outputTitle">📄 API Payload</h3>
+                <h3 id="outputTitle">📄 JSON Output</h3>
                 <pre id="jsonContent"></pre>
-                <button class="btn-small btn-copy" id="copyJsonBtn">Copy to Clipboard</button>
+                <button class="btn-small btn-copy" id="copyJsonBtn">Copy</button>
+                <button class="btn-small btn-share" id="shareEmailBtn">Share via Email</button>
             </div>
         </div>
     </div>
 
     <!-- JavaScript Logic -->
     <script>
-        const API_BASE_URL = 'https://api.leadlance.io/search';
+        const API_BASE_URL = '/search';
 
         let locationsData = { countries: [], states: [] };
         let industryList = [];
@@ -735,7 +841,7 @@
         const functionalOptions = ['Admin', 'Analytics', 'Applications', 'Cloud', 'Compliance', 'Controller', 'Customer Service', 'Cyber Security', 'Data Engineering', 'Devops', 'Digital', 'Distribution', 'Engineering', 'Finance', 'Fraud', 'Hiring', 'HR', 'Infrastructure', 'Inside Sales', 'IT', 'Learning', 'Legal', 'Marketing', 'Network Security', 'Operations', 'Product Management', 'Product Security', 'Production', 'Purchase', 'Research', 'Risk', 'Sales', 'Security', 'Support', 'Testing', 'Training'];
         const employeeSizeOptions = ['0 - 1', '2 - 10', '11 - 50', '51 - 200', '201 - 500', '501 - 1000', '1001 - 5000', '5001 - 10000', '10000+'];
         const revenueOptions = ['< 1M', '1M-10M', '11M-100M', '101M-500M', '501M-1B', '1B+'];
-        const fundingTypeOptions = ['Seed Round', 'Angel Round', 'Series A', 'Series B', 'Series C', 'Private Equity', 'Venture Round', 'Grant', 'Convertible Note', 'Debt Financing']; 
+        const fundingTypeOptions = ['Seed Round', 'Angel Round', 'Series A', 'Series B', 'Series C', 'Private Equity', 'Venture Round', 'Grant', 'Convertible Note', 'Debt Financing'];
         const businessModelOptions = ['Product', 'Services', 'Solutions'];
 
         const DEFAULT_INDUSTRIES = ['Software', 'Information Technology', 'Financial Services', 'Marketing', 'Real Estate', 'Healthcare', 'Retail', 'Education', 'Construction', 'Manufacturing'];
@@ -745,10 +851,10 @@
             const hasFundingType = selectedFundingType.length > 0;
             const fromDate = document.getElementById('fundingFromDate');
             const toDate = document.getElementById('fundingToDate');
-            
+
             fromDate.disabled = !hasFundingType;
             toDate.disabled = !hasFundingType;
-            
+
             if (!hasFundingType) {
                 fromDate.value = '';
                 toDate.value = '';
@@ -764,9 +870,9 @@
                 if (response.ok) locationsData = await response.json();
                 else throw new Error('API Error');
             } catch (e) {
-                locationsData = { 
-                    countries: ['United States', 'United Kingdom', 'Canada', 'India', 'Australia', 'Germany'], 
-                    states: ['California', 'New York', 'Texas', 'London', 'Ontario', 'Karnataka'] 
+                locationsData = {
+                    countries: ['United States', 'United Kingdom', 'Canada', 'India', 'Australia', 'Germany'],
+                    states: ['California', 'New York', 'Texas', 'London', 'Ontario', 'Karnataka']
                 };
             }
 
@@ -786,7 +892,7 @@
             const container = document.getElementById(containerId);
             const tagsContainer = document.getElementById(tagsContainerId);
 
-            if (!container) return; 
+            if (!container) return;
 
             options.forEach(option => {
                 const div = document.createElement('div');
@@ -813,7 +919,7 @@
             const input = document.getElementById(inputId);
             const clearBtn = document.getElementById(clearBtnId);
 
-            if (!container || !input || !clearBtn) return; 
+            if (!container || !input || !clearBtn) return;
 
             clearBtn.addEventListener('click', () => {
                 tagsArray.length = 0;
@@ -857,17 +963,16 @@
             const input = document.getElementById(inputId);
             const dropdown = document.getElementById(dropdownId);
             const clearBtn = document.getElementById(clearBtnId);
-            
-            if (!container || !input || !dropdown || !clearBtn) return; 
+
+            if (!container || !input || !dropdown || !clearBtn) return;
 
             clearBtn.addEventListener('click', () => {
                 tagsArray.length = 0;
                 renderLocTags();
             });
 
-            input.addEventListener('input', () => {
+            function updateDropdown() {
                 const val = input.value.toLowerCase();
-                if (!val) { dropdown.classList.remove('show'); return; }
 
                 let source = [];
                 if (listSource === 'country') source = locationsData.countries;
@@ -875,8 +980,9 @@
                 if (listSource === 'industry') source = industryList;
                 if (listSource === 'technology') source = technologyList;
 
-                const matches = source.filter(i => i.toLowerCase().includes(val) && !tagsArray.includes(i)).slice(0, 8);
-                
+                // Show top 50 matches (approximating "all" but performance safe)
+                const matches = source.filter(i => i.toLowerCase().includes(val) && !tagsArray.includes(i)).slice(0, 50);
+
                 if (matches.length > 0) {
                     dropdown.innerHTML = matches.map(m => `<div class="autocomplete-item" data-value="${m}">${m}</div>`).join('');
                     dropdown.classList.add('show');
@@ -891,7 +997,10 @@
                 } else {
                     dropdown.classList.remove('show');
                 }
-            });
+            }
+
+            input.addEventListener('input', updateDropdown);
+            input.addEventListener('focus', updateDropdown);
 
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
@@ -913,7 +1022,7 @@
                 const existingTags = container.querySelectorAll('.tag');
                 existingTags.forEach(tag => tag.remove());
                 clearBtn.style.display = tagsArray.length > 0 ? 'block' : 'none';
-                
+
                 tagsArray.forEach((value, index) => {
                     const tag = document.createElement('div');
                     tag.className = 'tag';
@@ -930,9 +1039,21 @@
         // --- Logic ---
 
         function getFormData() {
-            if (selectedFundingType.length > 0 && !document.getElementById('fundingToDate').value) {
-                const today = new Date().toISOString().split('T')[0];
-                document.getElementById('fundingToDate').value = today;
+            if (selectedFundingType.length > 0) {
+                const toDateInput = document.getElementById('fundingToDate');
+                const fromDateInput = document.getElementById('fundingFromDate');
+
+                if (!toDateInput.value) {
+                    const today = new Date().toISOString().split('T')[0];
+                    toDateInput.value = today;
+                }
+
+                if (!fromDateInput.value) {
+                    const toDateObj = new Date(toDateInput.value);
+                    const pastDate = new Date(toDateObj);
+                    pastDate.setFullYear(toDateObj.getFullYear() - 1);
+                    fromDateInput.value = pastDate.toISOString().split('T')[0];
+                }
             }
 
             const formData = {
@@ -990,11 +1111,13 @@
             const loading = document.getElementById('loading');
             const results = document.getElementById('results');
             const error = document.getElementById('error');
+            const jsonOutput = document.getElementById('jsonOutput');
 
             btn.disabled = true;
             loading.classList.add('show');
             results.classList.remove('show');
             error.classList.remove('show');
+            jsonOutput.classList.remove('show');
 
             const data = getFormData();
 
@@ -1012,10 +1135,17 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data) // Sends pure filter object as requested
                 });
-                
-                if (!res.ok) throw new Error("API Error");
+
+                if (!res.ok) {
+                    let errorMessage = "API Error";
+                    try {
+                        const errJson = await res.json();
+                        if (errJson.error) errorMessage = errJson.error;
+                    } catch (e) { /* ignore parse error */ }
+                    throw new Error(errorMessage);
+                }
                 const json = await res.json();
-                
+
                 // Handle API response which is an Array: [{ totalLeads: ..., totalPages: ... }]
                 const resultData = Array.isArray(json) ? json[0] : json;
 
@@ -1023,7 +1153,11 @@
                 document.getElementById('totalPages').textContent = resultData.totalPages || 0;
                 generateAnalysis(resultData.totalLeads || 0);
             } catch (err) {
-                console.warn("Fetch failed (CORS/Network), showing offline mode.", err);
+                console.warn("Fetch failed", err);
+
+                error.textContent = err.message;
+                error.classList.add('show');
+
                 document.getElementById('totalLeads').textContent = "Check on Scraper";
                 document.getElementById('totalPages').textContent = "-";
                 generateAnalysis("Check on Scraper");
@@ -1040,23 +1174,30 @@
             const content = document.getElementById('jsonContent');
             const title = document.getElementById('outputTitle');
             const filters = getFormData();
-            
+
             // Output only the filters, matching the curl payload structure requirement
             const finalJson = filters;
-            
-            title.textContent = "📄 API Payload (for cURL)";
+
+            title.textContent = "📄 JSON Output";
             content.textContent = JSON.stringify(finalJson, null, 2);
             output.classList.add('show');
         });
 
+        document.getElementById('shareEmailBtn').addEventListener('click', () => {
+            const jsonText = document.getElementById('jsonContent').textContent;
+            const recipient = "hi@adityamalur.com";
+            const subject = "Lead Search Criteria";
+            const body = encodeURIComponent(jsonText);
+            window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${body}`;
+        });
         document.getElementById('copyJsonBtn').addEventListener('click', async () => {
             const text = document.getElementById('jsonContent').textContent;
             const btn = document.getElementById('copyJsonBtn');
-            
+
             try {
                 await navigator.clipboard.writeText(text);
                 btn.textContent = "✓ Copied!";
-                setTimeout(() => btn.textContent = "Copy to Clipboard", 2000);
+                setTimeout(() => btn.textContent = "Copy", 2000);
             } catch (e) {
                 const ta = document.createElement('textarea');
                 ta.value = text;
@@ -1065,7 +1206,7 @@
                 document.execCommand('copy');
                 document.body.removeChild(ta);
                 btn.textContent = "✓ Copied!";
-                setTimeout(() => btn.textContent = "Copy to Clipboard", 2000);
+                setTimeout(() => btn.textContent = "Copy", 2000);
             }
         });
 
@@ -1098,4 +1239,5 @@
 
     </script>
 </body>
+
 </html>
