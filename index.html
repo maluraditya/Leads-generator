@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leads That Convert | Aditya Malur</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7c3aed; /* Rich Purple */
+            --primary-dark: #5b21b6;
+            --secondary: #db2777; /* Pink/Magenta for gradients */
+            --accent: #f59e0b; /* Gold for highlights */
+            --bg-light: #f5f3ff;
+            --text-dark: #1e1b4b;
+            --text-gray: #4b5563;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #db2777 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: var(--text-dark);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Background Effects */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            animation: float 20s infinite ease-in-out;
+        }
+        body::before {
+            background: rgba(124, 58, 237, 0.3);
+            top: -100px;
+            left: -100px;
+        }
+        body::after {
+            background: rgba(219, 39, 119, 0.2);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(50px, 50px); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background: var(--glass);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Branding Bar */
+        .brand-bar {
+            background: #2e1065;
+            color: white;
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-link {
+            color: #e9d5ff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .brand-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ffffff 0%, #f3e8ff 100%);
+            padding: 50px 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, var(--primary-dark), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .form-content {
+            padding: 40px;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(124, 58, 237, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-color: rgba(124, 58, 237, 0.2);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f3e8ff;
+            padding-bottom: 10px;
+        }
+
+        .section-title i {
+            background: #f3e8ff;
+            padding: 8px;
+            border-radius: 8px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+
+        .help-text {
+            font-size: 12px;
+            color: #9ca3af;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        /* Inputs */
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+            color: var(--text-dark);
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+            background: white;
+        }
+
+        /* Tag Inputs */
+        .tag-input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 8px 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            min-height: 52px;
+            background: #f9fafb;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .tag-input-container:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+            background: white;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(124, 58, 237, 0.2);
+        }
+
+        .tag-remove {
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        .tag-remove:hover { opacity: 1; }
+
+        .tag-input {
+            border: none !important;
+            padding: 8px !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            min-width: 150px;
+            flex: 1;
+        }
+
+        .clear-all-tags {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            background: #fee2e2;
+            color: #ef4444;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .clear-all-tags:hover { background: #fecaca; }
+
+        /* Custom Select */
+        .custom-select {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            padding: 15px;
+            background: #f9fafb;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .custom-option {
+            padding: 10px;
+            text-align: center;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+            color: var(--text-gray);
+        }
+
+        .custom-option:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .custom-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 6px rgba(124, 58, 237, 0.2);
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 14px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn:active { transform: translateY(0); }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-dark);
+            border: 2px solid #e5e7eb;
+            box-shadow: none;
+        }
+        .btn-secondary:hover {
+            background: #f9fafb;
+            border-color: #d1d5db;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .btn-curl {
+            background: #1e1b4b; /* Dark Navy for terminal feel */
+            box-shadow: 0 4px 15px rgba(30, 27, 75, 0.3);
+        }
+
+        /* Results Area */
+        .results {
+            margin-top: 40px;
+            background: #fff;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid #e5e7eb;
+            display: none;
+            animation: slideUp 0.5s ease-out;
+        }
+        .results.show { display: block; }
+
+        .results h3 {
+            color: var(--primary-dark);
+            font-size: 24px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f3e8ff;
+            padding-bottom: 10px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            background: #f9fafb;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #f3f4f6;
+        }
+
+        .result-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* JSON Output */
+        .json-output {
+            background: #1e1b4b; /* Code background */
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+            color: #a5b4fc;
+            overflow: hidden;
+        }
+        .json-output.show { display: block; }
+        
+        .json-output h3 {
+            color: #fff;
+            border-bottom: 1px solid #312e81;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        pre {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-x: auto;
+            color: #c7d2fe;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        
+        .btn-copy {
+            background: var(--primary);
+            color: white;
+            margin-top: 15px;
+        }
+        .btn-copy:hover { background: var(--primary-dark); }
+
+        /* Autocomplete */
+        .autocomplete-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+        }
+        .autocomplete-dropdown.show { display: block; }
+
+        .autocomplete-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-size: 14px;
+        }
+        .autocomplete-item:hover { background: #f3e8ff; color: var(--primary); }
+        .autocomplete-item.selected { background: var(--primary); color: white; }
+
+        /* Loading & Error */
+        .loading {
+            text-align: center;
+            padding: 30px;
+            color: var(--primary);
+            font-weight: 600;
+            display: none;
+        }
+        .loading.show { display: block; }
+
+        .error {
+            background: #fee2e2;
+            color: #b91c1c;
+            padding: 16px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+            border: 1px solid #fca5a5;
+        }
+        .error.show { display: block; }
+
+        /* Analysis Box */
+        .analysis-info {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            color: #1e3a8a;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="brand-bar">
+        <div>Welcome, <span style="font-weight: 700; color: #fff;">Lead Hunter</span></div>
+        <a href="https://adityamalur.com" target="_blank" class="brand-link">
+            <span>Powered by Aditya Malur</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Get Leads That Convert</h1>
+            <p>An AI system to identify, qualify, and structure high-intent leads.</p>
+        </div>
+
+        <div class="form-content">
+            <form id="leadsForm">
+
+                <!-- Person Name -->
+                <div class="section">
+                    <div class="section-title">👤 Person Details</div>
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <div class="tag-input-container" id="fnameTagContainer">
+                            <button type="button" class="clear-all-tags" id="clearFName" style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="fnameInput" placeholder="Type name and press Enter...">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <div class="tag-input-container" id="lnameTagContainer">
+                            <button type="button" class="clear-all-tags" id="clearLName" style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="lnameInput" placeholder="Type name and press Enter...">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Job Title -->
+                <div class="section">
+                    <div class="section-title">👔 Role & Seniority</div>
+                    <div class="form-group">
+                        <label for="personTitle">Specific Titles</label>
+                        <div class="tag-input-container" id="titleTagContainer">
+                            <button type="button" class="clear-all-tags" id="clearTitles" style="display: none;">Clear All</button>
+                            <input type="text" class="tag-input" id="titleInput" placeholder="e.g. CEO, Marketing Manager...">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="seniority">Seniority Level</label>
+                        <div class="custom-select" id="senioritySelect"></div>
+                        <div class="select-tags-container" id="seniorityTags"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="functional">Department / Function</label>
+                        <div class="custom-select" id="functionalSelect"></div>
+                        <div class="select-tags-container" id="functionalTags"></div>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="section">
+                    <div class="section-title">📍 Location Targeting</div>
+                    <div class="form-group">
+                        <label for="personCountry">Person Country</label>
+                        <div class="tag-input-container" id="personCountryTagContainer" style="position: relative;">
+                            <button type="button" class="clear-all-tags" id="clearPersonCountries" style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="personCountryInput" placeholder="Search countries...">
+                            <div class="autocomplete-dropdown" id="personCountryDropdown"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="personState">Person State/Region</label>
+                        <div class="tag-input-container" id="personStateTagContainer" style="position: relative;">
+                            <button type="button" class="clear-all-tags" id="clearPersonStates" style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="personStateInput" placeholder="Search states...">
+                            <div class="autocomplete-dropdown" id="personStateDropdown"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Details -->
+                <div class="section">
+                    <div class="section-title">🏢 Company Criteria</div>
+                    <div class="form-group">
+                        <label for="industry">Industry</label>
+                        <div class="tag-input-container" id="industryTagContainer" style="position: relative;">
+                            <button type="button" class="clear-all-tags" id="clearIndustry" style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="industryInput" placeholder="Search industries...">
+                            <div class="autocomplete-dropdown" id="industryDropdown"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="technology">Technology Stack</label>
+                         <div class="tag-input-container" id="technologyTagContainer" style="position: relative;">
+                            <button type="button" class="clear-all-tags" id="clearTechnology" style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="technologyInput" placeholder="e.g., React, Salesforce, HubSpot...">
+                            <div class="autocomplete-dropdown" id="technologyDropdown"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companyEmployeeSize">Employee Count</label>
+                        <div class="custom-select" id="employeeSizeSelect"></div>
+                        <div class="select-tags-container" id="employeeSizeTags"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="revenue">Revenue Range</label>
+                        <div class="custom-select" id="revenueSelect"></div>
+                        <div class="select-tags-container" id="revenueTags"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="businessModel">Business Model</label>
+                        <div class="custom-select" id="businessModelSelect"></div>
+                        <div class="select-tags-container" id="businessModelTags"></div>
+                    </div>
+                </div>
+
+                <!-- Advanced Filters -->
+                <div class="section">
+                    <div class="section-title">🚀 Advanced Filters</div>
+                    <div class="form-group">
+                        <label for="industryKeywords">Industry Keywords</label>
+                        <div class="tag-input-container" id="industryKeywordsTagContainer">
+                            <button type="button" class="clear-all-tags" id="clearIndustryKeywords" style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="industryKeywordsInput" placeholder="e.g., SaaS, B2B, Fintech...">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="companyDomain">Specific Domains</label>
+                        <div class="tag-input-container" id="domainTagContainer">
+                            <button type="button" class="clear-all-tags" id="clearDomains" style="display: none;">Clear</button>
+                            <input type="text" class="tag-input" id="domainInput" placeholder="e.g., google.com, stripe.com...">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactEmailStatus">Email Verification</label>
+                        <select id="contactEmailStatus">
+                            <option value="">-- Any Status --</option>
+                            <option value="verified">Verified Emails Only</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Funding (Optional) -->
+                <div class="section">
+                    <div class="section-title">💰 Funding Data</div>
+                    <div class="form-group">
+                        <label for="fundingType">Funding Type</label>
+                        <div class="custom-select" id="fundingTypeSelect"></div>
+                        <div class="select-tags-container" id="fundingTypeTags"></div>
+                    </div>
+                    <div style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="fundingFromDate">From Date</label>
+                            <input type="text" id="fundingFromDate" placeholder="YYYY-MM-DD" disabled>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="fundingToDate">To Date</label>
+                            <input type="text" id="fundingToDate" placeholder="YYYY-MM-DD" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-top: 30px;">
+                    <button type="submit" class="btn" id="submitBtn">
+                        🚀 Fetch Results
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="resetBtn">
+                        🔄 Reset Filters
+                    </button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="loading" id="loading">
+            <p>⏳ Hunting for leads...</p>
+        </div>
+
+        <div class="error" id="error"></div>
+
+        <div class="results" id="results">
+            <h3>✅ Search Results</h3>
+            <div class="result-item">
+                <span class="result-label">Total Leads Found</span>
+                <span class="result-value" id="totalLeads">0</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">Total Pages</span>
+                <span class="result-value" id="totalPages">0</span>
+            </div>
+            <div id="analysisSection"></div>
+
+            <div style="display: flex; gap: 15px; margin-top: 25px;">
+                <button type="button" class="btn btn-json" id="generateJsonBtn" style="flex: 1; margin-top: 0;">📋 Generate JSON</button>
+            </div>
+
+            <div class="json-output" id="jsonOutput">
+                <h3 id="outputTitle">📄 Configuration Output</h3>
+                <pre id="jsonContent"></pre>
+                <button class="btn-small btn-copy" id="copyJsonBtn">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic (Preserved functionality with updated UI bindings) -->
+    <script>
+        const TRACK_URL = 'https://api.leadlance.io/search/api/simple-track';
+        const API_BASE_URL = 'https://api.leadlance.io/search';
+
+        let locationsData = { countries: [], states: [] };
+        let industryList = [];
+        let technologyList = [];
+
+        // Data Stores
+        const fnameTags = [], lnameTags = [], titleTags = [], domainTags = [];
+        const selectedSeniority = [], selectedFunctional = [], selectedEmployeeSize = [];
+        const personCountryTags = [], personStateTags = [], companyCountryTags = [], companyStateTags = [];
+        const webKeywordsTags = [], industryTags = [], technologyTags = [], industryKeywordsTags = [];
+        const selectedRevenue = [], selectedFundingType = [], selectedBusinessModel = [];
+
+        // Options
+        const seniorityOptions = ['Founder', 'Chairman', 'President', 'CEO', 'CXO', 'Vice President', 'Director', 'Head', 'Manager', 'Senior', 'Junior', 'Entry Level', 'Executive'];
+        const functionalOptions = ['Admin', 'Analytics', 'Applications', 'Cloud', 'Compliance', 'Controller', 'Customer Service', 'Cyber Security', 'Data Engineering', 'Devops', 'Digital', 'Distribution', 'Engineering', 'Finance', 'Fraud', 'Hiring', 'HR', 'Infrastructure', 'Inside Sales', 'IT', 'Learning', 'Legal', 'Marketing', 'Network Security', 'Operations', 'Product Management', 'Product Security', 'Production', 'Purchase', 'Research', 'Risk', 'Sales', 'Security', 'Support', 'Testing', 'Training'];
+        const employeeSizeOptions = ['0 - 1', '2 - 10', '11 - 50', '51 - 200', '201 - 500', '501 - 1000', '1001 - 5000', '5001 - 10000', '10000+'];
+        const revenueOptions = ['< 1M', '1M-10M', '11M-100M', '101M-500M', '501M-1B', '1B+'];
+        const fundingTypeOptions = ['Seed Round', 'Angel Round', 'Series A', 'Series B', 'Series C', 'Private Equity', 'Venture Round', 'Grant', 'Convertible Note', 'Debt Financing']; // Shortened for UI
+        const businessModelOptions = ['Product', 'Services', 'Solutions'];
+
+        const DEFAULT_INDUSTRIES = ['Software', 'Information Technology', 'Financial Services', 'Marketing', 'Real Estate', 'Healthcare', 'Retail', 'Education', 'Construction', 'Manufacturing'];
+        const DEFAULT_TECHNOLOGIES = ['React', 'Node.js', 'Python', 'AWS', 'Salesforce', 'HubSpot', 'Shopify', 'WordPress', 'Google Analytics', 'Docker'];
+
+        function updateFundingDateFields() {
+            const hasFundingType = selectedFundingType.length > 0;
+            const fromDate = document.getElementById('fundingFromDate');
+            const toDate = document.getElementById('fundingToDate');
+            
+            fromDate.disabled = !hasFundingType;
+            toDate.disabled = !hasFundingType;
+            
+            if (!hasFundingType) {
+                fromDate.value = '';
+                toDate.value = '';
+            } else {
+                fromDate.style.background = '#fff';
+                toDate.style.background = '#fff';
+            }
+        }
+
+        async function loadData() {
+            // Simulate loading or fetch from API
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/locations`);
+                if (response.ok) locationsData = await response.json();
+                else throw new Error('API Error');
+            } catch (e) {
+                locationsData = { 
+                    countries: ['United States', 'United Kingdom', 'Canada', 'India', 'Australia', 'Germany'], 
+                    states: ['California', 'New York', 'Texas', 'London', 'Ontario', 'Karnataka'] 
+                };
+            }
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/industries`);
+                if (response.ok) industryList = await response.json();
+                else throw new Error('API Error');
+            } catch (e) {
+                industryList = DEFAULT_INDUSTRIES;
+            }
+            technologyList = DEFAULT_TECHNOLOGIES;
+        }
+
+        // --- UI Helper Functions ---
+
+        function setupCustomSelect(containerId, tagsContainerId, options, selectedArray) {
+            const container = document.getElementById(containerId);
+            const tagsContainer = document.getElementById(tagsContainerId);
+
+            if (!container) return; // Safety check
+
+            options.forEach(option => {
+                const div = document.createElement('div');
+                div.className = 'custom-option';
+                div.textContent = option;
+                div.dataset.value = option;
+                div.addEventListener('click', () => {
+                    const index = selectedArray.indexOf(option);
+                    if (index > -1) {
+                        selectedArray.splice(index, 1);
+                        div.classList.remove('selected');
+                    } else {
+                        selectedArray.push(option);
+                        div.classList.add('selected');
+                    }
+                    renderSelectTags(tagsContainer, selectedArray, containerId);
+                    if (containerId === 'fundingTypeSelect') updateFundingDateFields();
+                });
+                container.appendChild(div);
+            });
+        }
+
+        function renderSelectTags(container, selectedArray, selectId) {
+            if (!container) return; // Safety check
+            container.innerHTML = ''; // Clear current tags in the visual container (not the input)
+            // Visual feedback is mainly handled by the 'selected' class on options
+            // But if we want tags below:
+            /* selectedArray.forEach(value => {
+                // Optional: Render tags if needed, but the 'selected' state in the grid is usually enough.
+            });
+            */
+        }
+
+        function setupTagInput(containerId, inputId, clearBtnId, tagsArray, maxTags) {
+            const container = document.getElementById(containerId);
+            const input = document.getElementById(inputId);
+            const clearBtn = document.getElementById(clearBtnId);
+
+            if (!container || !input || !clearBtn) return; // Safety check
+
+            clearBtn.addEventListener('click', () => {
+                tagsArray.length = 0;
+                renderTags();
+                input.value = '';
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const value = input.value.trim();
+                    if (value && tagsArray.length < maxTags && !tagsArray.includes(value)) {
+                        tagsArray.push(value);
+                        renderTags();
+                        input.value = '';
+                    }
+                }
+            });
+
+            function renderTags() {
+                const existingTags = container.querySelectorAll('.tag');
+                existingTags.forEach(tag => tag.remove());
+
+                clearBtn.style.display = tagsArray.length > 0 ? 'block' : 'none';
+
+                tagsArray.forEach((value, index) => {
+                    const tag = document.createElement('div');
+                    tag.className = 'tag';
+                    tag.innerHTML = `<span>${value}</span><span class="tag-remove">×</span>`;
+                    tag.querySelector('.tag-remove').addEventListener('click', () => {
+                        tagsArray.splice(index, 1);
+                        renderTags();
+                    });
+                    container.insertBefore(tag, input);
+                });
+            }
+        }
+
+        function setupLocationInput(containerId, inputId, dropdownId, clearBtnId, tagsArray, listSource) {
+            const container = document.getElementById(containerId);
+            const input = document.getElementById(inputId);
+            const dropdown = document.getElementById(dropdownId);
+            const clearBtn = document.getElementById(clearBtnId);
+            
+            if (!container || !input || !dropdown || !clearBtn) return; // Safety check
+
+            clearBtn.addEventListener('click', () => {
+                tagsArray.length = 0;
+                renderLocTags();
+            });
+
+            input.addEventListener('input', () => {
+                const val = input.value.toLowerCase();
+                if (!val) { dropdown.classList.remove('show'); return; }
+
+                let source = [];
+                if (listSource === 'country') source = locationsData.countries;
+                if (listSource === 'state') source = locationsData.states;
+                if (listSource === 'industry') source = industryList;
+                if (listSource === 'technology') source = technologyList;
+
+                const matches = source.filter(i => i.toLowerCase().includes(val) && !tagsArray.includes(i)).slice(0, 8);
+                
+                if (matches.length > 0) {
+                    dropdown.innerHTML = matches.map(m => `<div class="autocomplete-item" data-value="${m}">${m}</div>`).join('');
+                    dropdown.classList.add('show');
+                    dropdown.querySelectorAll('.autocomplete-item').forEach(item => {
+                        item.addEventListener('click', () => {
+                            tagsArray.push(item.dataset.value);
+                            renderLocTags();
+                            input.value = '';
+                            dropdown.classList.remove('show');
+                        });
+                    });
+                } else {
+                    dropdown.classList.remove('show');
+                }
+            });
+
+            // Allow custom entry on Enter
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (input.value.trim() && !tagsArray.includes(input.value.trim())) {
+                        tagsArray.push(input.value.trim());
+                        renderLocTags();
+                        input.value = '';
+                        dropdown.classList.remove('show');
+                    }
+                }
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!container.contains(e.target)) dropdown.classList.remove('show');
+            });
+
+            function renderLocTags() {
+                const existingTags = container.querySelectorAll('.tag');
+                existingTags.forEach(tag => tag.remove());
+                clearBtn.style.display = tagsArray.length > 0 ? 'block' : 'none';
+                
+                tagsArray.forEach((value, index) => {
+                    const tag = document.createElement('div');
+                    tag.className = 'tag';
+                    tag.innerHTML = `<span>${value}</span><span class="tag-remove">×</span>`;
+                    tag.querySelector('.tag-remove').addEventListener('click', () => {
+                        tagsArray.splice(index, 1);
+                        renderLocTags();
+                    });
+                    container.insertBefore(tag, input);
+                });
+            }
+        }
+
+        // --- Logic ---
+
+        function getFormData() {
+            if (selectedFundingType.length > 0 && !document.getElementById('fundingToDate').value) {
+                const today = new Date().toISOString().split('T')[0];
+                document.getElementById('fundingToDate').value = today;
+            }
+
+            const formData = {
+                firstName: fnameTags[0],
+                lastName: lnameTags[0],
+                personTitle: titleTags.length ? titleTags : undefined,
+                seniority: selectedSeniority.length ? selectedSeniority : undefined,
+                functional: selectedFunctional.length ? selectedFunctional : undefined,
+                companyEmployeeSize: selectedEmployeeSize.length ? selectedEmployeeSize : undefined,
+                personCountry: personCountryTags.length ? personCountryTags : undefined,
+                personState: personStateTags.length ? personStateTags : undefined,
+                companyCountry: companyCountryTags.length ? companyCountryTags : undefined,
+                companyState: companyStateTags.length ? companyStateTags : undefined,
+                companyDomain: domainTags.length ? domainTags : undefined,
+                industry: industryTags.length ? industryTags : undefined,
+                technology: technologyTags.length ? technologyTags : undefined,
+                industryKeywords: industryKeywordsTags.length ? industryKeywordsTags : undefined,
+                revenue: selectedRevenue.length ? selectedRevenue : undefined,
+                fundingType: selectedFundingType.length ? selectedFundingType : undefined,
+                fundingFromDate: document.getElementById('fundingFromDate').value || undefined,
+                fundingToDate: document.getElementById('fundingToDate').value || undefined,
+                businessModel: selectedBusinessModel.length ? selectedBusinessModel : undefined,
+                contactEmailStatus: document.getElementById('contactEmailStatus').value || undefined
+            };
+
+            // Clean undefined
+            Object.keys(formData).forEach(key => formData[key] === undefined && delete formData[key]);
+            return formData;
+        }
+
+        function generateAnalysis(count) {
+            const section = document.getElementById('analysisSection');
+            let html = '';
+            if (count > 30000) {
+                html = `<div class="analysis-info" style="border-color: var(--accent); background: #fffbeb; color: #92400e;">
+                    <strong>⚠️ High Volume:</strong> ${count.toLocaleString()} leads found. We recommend adding "Person Titles" or narrowing the "Industry" to get a more targeted list for scraping.
+                </div>`;
+            } else if (count === 0 || count === "Check on Scraper") {
+                html = `<div class="analysis-info">
+                    <strong>ℹ️ API Note:</strong> If the live preview is blocked by your browser/network, rely on the JSON/CURL below. It works 100%.
+                </div>`;
+            } else {
+                html = `<div class="analysis-info" style="border-color: #10b981; background: #ecfdf5; color: #065f46;">
+                    <strong>✅ Perfect Batch:</strong> ${count.toLocaleString()} leads is an optimal size for a scraping run.
+                </div>`;
+            }
+            section.innerHTML = html;
+        }
+
+        // --- Event Listeners ---
+
+        document.getElementById('submitBtn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            const error = document.getElementById('error');
+
+            btn.disabled = true;
+            loading.classList.add('show');
+            results.classList.remove('show');
+            error.classList.remove('show');
+
+            const data = getFormData();
+
+            if (Object.keys(data).length === 0) {
+                error.textContent = "Please select at least one filter criteria.";
+                error.classList.add('show');
+                loading.classList.remove('show');
+                btn.disabled = false;
+                return;
+            }
+
+            try {
+                // Attempt API call to get counts
+                const res = await fetch(`${API_BASE_URL}/fetch`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                if (!res.ok) throw new Error("API Error");
+                const json = await res.json();
+                
+                document.getElementById('totalLeads').textContent = json.totalLeads?.toLocaleString() || 0;
+                document.getElementById('totalPages').textContent = json.totalPages || 0;
+                generateAnalysis(json.totalLeads || 0);
+            } catch (err) {
+                console.warn("Fetch failed (CORS/Network), showing offline mode.");
+                document.getElementById('totalLeads').textContent = "Check on Scraper";
+                document.getElementById('totalPages').textContent = "-";
+                generateAnalysis("Check on Scraper");
+            } finally {
+                loading.classList.remove('show');
+                results.classList.add('show');
+                btn.disabled = false;
+                // Scroll to results
+                results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+        document.getElementById('generateJsonBtn').addEventListener('click', () => {
+            const output = document.getElementById('jsonOutput');
+            const content = document.getElementById('jsonContent');
+            const title = document.getElementById('outputTitle');
+            const filters = getFormData();
+            
+            // Get total leads from the display, clean commas, default to 10000 if not found
+            let totalResults = parseInt(document.getElementById('totalLeads').textContent.replace(/,/g, '')) || 10000;
+            if(isNaN(totalResults)) totalResults = 10000;
+
+            const finalJson = {
+                source: "b2b",
+                totalResults: totalResults,
+                filters: filters
+            };
+            
+            title.textContent = "📄 JSON Configuration";
+            content.textContent = JSON.stringify(finalJson, null, 2);
+            output.classList.add('show');
+        });
+
+        document.getElementById('copyJsonBtn').addEventListener('click', async () => {
+            const text = document.getElementById('jsonContent').textContent;
+            const btn = document.getElementById('copyJsonBtn');
+            
+            try {
+                await navigator.clipboard.writeText(text);
+                btn.textContent = "✓ Copied!";
+                setTimeout(() => btn.textContent = "Copy to Clipboard", 2000);
+            } catch (e) {
+                // Fallback
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                btn.textContent = "✓ Copied!";
+                setTimeout(() => btn.textContent = "Copy to Clipboard", 2000);
+            }
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            // Simple reload to clear everything clean
+            window.location.reload();
+        });
+
+        // Initialize
+        loadData().then(() => {
+            setupCustomSelect('senioritySelect', 'seniorityTags', seniorityOptions, selectedSeniority);
+            setupCustomSelect('functionalSelect', 'functionalTags', functionalOptions, selectedFunctional);
+            setupCustomSelect('employeeSizeSelect', 'employeeSizeTags', employeeSizeOptions, selectedEmployeeSize);
+            setupCustomSelect('revenueSelect', 'revenueTags', revenueOptions, selectedRevenue);
+            setupCustomSelect('fundingTypeSelect', 'fundingTypeTags', fundingTypeOptions, selectedFundingType);
+            setupCustomSelect('businessModelSelect', 'businessModelTags', businessModelOptions, selectedBusinessModel);
+
+            setupTagInput('fnameTagContainer', 'fnameInput', 'clearFName', fnameTags, 1);
+            setupTagInput('lnameTagContainer', 'lnameInput', 'clearLName', lnameTags, 1);
+            setupTagInput('titleTagContainer', 'titleInput', 'clearTitles', titleTags, 20);
+            setupTagInput('industryKeywordsTagContainer', 'industryKeywordsInput', 'clearIndustryKeywords', industryKeywordsTags, 20);
+            setupTagInput('webKeywordsTagContainer', 'webKeywordsInput', 'clearWebKeywords', webKeywordsTags, 20);
+            setupTagInput('domainTagContainer', 'domainInput', 'clearDomains', domainTags, 20);
+
+            setupLocationInput('personCountryTagContainer', 'personCountryInput', 'personCountryDropdown', 'clearPersonCountries', personCountryTags, 'country');
+            setupLocationInput('personStateTagContainer', 'personStateInput', 'personStateDropdown', 'clearPersonStates', personStateTags, 'state');
+            setupLocationInput('companyCountryTagContainer', 'companyCountryInput', 'companyCountryDropdown', 'clearCompanyCountries', companyCountryTags, 'country');
+            setupLocationInput('companyStateTagContainer', 'companyStateInput', 'companyStateDropdown', 'clearCompanyStates', companyStateTags, 'state');
+            setupLocationInput('industryTagContainer', 'industryInput', 'industryDropdown', 'clearIndustry', industryTags, 'industry');
+            setupLocationInput('technologyTagContainer', 'technologyInput', 'technologyDropdown', 'clearTechnology', technologyTags, 'technology');
+        });
+
+    </script>
+</body>
+</html>
