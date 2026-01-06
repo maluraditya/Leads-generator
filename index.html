@@ -704,20 +704,19 @@
             <div id="analysisSection"></div>
 
             <div style="display: flex; gap: 15px; margin-top: 25px;">
-                <button type="button" class="btn btn-json" id="generateJsonBtn" style="flex: 1; margin-top: 0;">📋 Generate JSON</button>
+                <button type="button" class="btn btn-json" id="generateJsonBtn" style="flex: 1; margin-top: 0;">📋 Generate Payload JSON</button>
             </div>
 
             <div class="json-output" id="jsonOutput">
-                <h3 id="outputTitle">📄 Configuration Output</h3>
+                <h3 id="outputTitle">📄 API Payload</h3>
                 <pre id="jsonContent"></pre>
                 <button class="btn-small btn-copy" id="copyJsonBtn">Copy to Clipboard</button>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript Logic (Preserved functionality with updated UI bindings) -->
+    <!-- JavaScript Logic -->
     <script>
-        const TRACK_URL = 'https://api.leadlance.io/search/api/simple-track';
         const API_BASE_URL = 'https://api.leadlance.io/search';
 
         let locationsData = { countries: [], states: [] };
@@ -728,7 +727,7 @@
         const fnameTags = [], lnameTags = [], titleTags = [], domainTags = [];
         const selectedSeniority = [], selectedFunctional = [], selectedEmployeeSize = [];
         const personCountryTags = [], personStateTags = [], companyCountryTags = [], companyStateTags = [];
-        const webKeywordsTags = [], industryTags = [], technologyTags = [], industryKeywordsTags = [];
+        const industryTags = [], technologyTags = [], industryKeywordsTags = [];
         const selectedRevenue = [], selectedFundingType = [], selectedBusinessModel = [];
 
         // Options
@@ -736,7 +735,7 @@
         const functionalOptions = ['Admin', 'Analytics', 'Applications', 'Cloud', 'Compliance', 'Controller', 'Customer Service', 'Cyber Security', 'Data Engineering', 'Devops', 'Digital', 'Distribution', 'Engineering', 'Finance', 'Fraud', 'Hiring', 'HR', 'Infrastructure', 'Inside Sales', 'IT', 'Learning', 'Legal', 'Marketing', 'Network Security', 'Operations', 'Product Management', 'Product Security', 'Production', 'Purchase', 'Research', 'Risk', 'Sales', 'Security', 'Support', 'Testing', 'Training'];
         const employeeSizeOptions = ['0 - 1', '2 - 10', '11 - 50', '51 - 200', '201 - 500', '501 - 1000', '1001 - 5000', '5001 - 10000', '10000+'];
         const revenueOptions = ['< 1M', '1M-10M', '11M-100M', '101M-500M', '501M-1B', '1B+'];
-        const fundingTypeOptions = ['Seed Round', 'Angel Round', 'Series A', 'Series B', 'Series C', 'Private Equity', 'Venture Round', 'Grant', 'Convertible Note', 'Debt Financing']; // Shortened for UI
+        const fundingTypeOptions = ['Seed Round', 'Angel Round', 'Series A', 'Series B', 'Series C', 'Private Equity', 'Venture Round', 'Grant', 'Convertible Note', 'Debt Financing']; 
         const businessModelOptions = ['Product', 'Services', 'Solutions'];
 
         const DEFAULT_INDUSTRIES = ['Software', 'Information Technology', 'Financial Services', 'Marketing', 'Real Estate', 'Healthcare', 'Retail', 'Education', 'Construction', 'Manufacturing'];
@@ -760,7 +759,6 @@
         }
 
         async function loadData() {
-            // Simulate loading or fetch from API
             try {
                 const response = await fetch(`${API_BASE_URL}/api/locations`);
                 if (response.ok) locationsData = await response.json();
@@ -788,7 +786,7 @@
             const container = document.getElementById(containerId);
             const tagsContainer = document.getElementById(tagsContainerId);
 
-            if (!container) return; // Safety check
+            if (!container) return; 
 
             options.forEach(option => {
                 const div = document.createElement('div');
@@ -804,22 +802,10 @@
                         selectedArray.push(option);
                         div.classList.add('selected');
                     }
-                    renderSelectTags(tagsContainer, selectedArray, containerId);
                     if (containerId === 'fundingTypeSelect') updateFundingDateFields();
                 });
                 container.appendChild(div);
             });
-        }
-
-        function renderSelectTags(container, selectedArray, selectId) {
-            if (!container) return; // Safety check
-            container.innerHTML = ''; // Clear current tags in the visual container (not the input)
-            // Visual feedback is mainly handled by the 'selected' class on options
-            // But if we want tags below:
-            /* selectedArray.forEach(value => {
-                // Optional: Render tags if needed, but the 'selected' state in the grid is usually enough.
-            });
-            */
         }
 
         function setupTagInput(containerId, inputId, clearBtnId, tagsArray, maxTags) {
@@ -827,7 +813,7 @@
             const input = document.getElementById(inputId);
             const clearBtn = document.getElementById(clearBtnId);
 
-            if (!container || !input || !clearBtn) return; // Safety check
+            if (!container || !input || !clearBtn) return; 
 
             clearBtn.addEventListener('click', () => {
                 tagsArray.length = 0;
@@ -872,7 +858,7 @@
             const dropdown = document.getElementById(dropdownId);
             const clearBtn = document.getElementById(clearBtnId);
             
-            if (!container || !input || !dropdown || !clearBtn) return; // Safety check
+            if (!container || !input || !dropdown || !clearBtn) return; 
 
             clearBtn.addEventListener('click', () => {
                 tagsArray.length = 0;
@@ -907,7 +893,6 @@
                 }
             });
 
-            // Allow custom entry on Enter
             input.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     e.preventDefault();
@@ -1022,21 +1007,23 @@
             }
 
             try {
-                // Attempt API call to get counts
                 const res = await fetch(`${API_BASE_URL}/fetch`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data) // Sends pure filter object as requested
                 });
                 
                 if (!res.ok) throw new Error("API Error");
                 const json = await res.json();
                 
-                document.getElementById('totalLeads').textContent = json.totalLeads?.toLocaleString() || 0;
-                document.getElementById('totalPages').textContent = json.totalPages || 0;
-                generateAnalysis(json.totalLeads || 0);
+                // Handle API response which is an Array: [{ totalLeads: ..., totalPages: ... }]
+                const resultData = Array.isArray(json) ? json[0] : json;
+
+                document.getElementById('totalLeads').textContent = resultData.totalLeads?.toLocaleString() || 0;
+                document.getElementById('totalPages').textContent = resultData.totalPages || 0;
+                generateAnalysis(resultData.totalLeads || 0);
             } catch (err) {
-                console.warn("Fetch failed (CORS/Network), showing offline mode.");
+                console.warn("Fetch failed (CORS/Network), showing offline mode.", err);
                 document.getElementById('totalLeads').textContent = "Check on Scraper";
                 document.getElementById('totalPages').textContent = "-";
                 generateAnalysis("Check on Scraper");
@@ -1044,7 +1031,6 @@
                 loading.classList.remove('show');
                 results.classList.add('show');
                 btn.disabled = false;
-                // Scroll to results
                 results.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
@@ -1055,17 +1041,10 @@
             const title = document.getElementById('outputTitle');
             const filters = getFormData();
             
-            // Get total leads from the display, clean commas, default to 10000 if not found
-            let totalResults = parseInt(document.getElementById('totalLeads').textContent.replace(/,/g, '')) || 10000;
-            if(isNaN(totalResults)) totalResults = 10000;
-
-            const finalJson = {
-                source: "b2b",
-                totalResults: totalResults,
-                filters: filters
-            };
+            // Output only the filters, matching the curl payload structure requirement
+            const finalJson = filters;
             
-            title.textContent = "📄 JSON Configuration";
+            title.textContent = "📄 API Payload (for cURL)";
             content.textContent = JSON.stringify(finalJson, null, 2);
             output.classList.add('show');
         });
@@ -1079,7 +1058,6 @@
                 btn.textContent = "✓ Copied!";
                 setTimeout(() => btn.textContent = "Copy to Clipboard", 2000);
             } catch (e) {
-                // Fallback
                 const ta = document.createElement('textarea');
                 ta.value = text;
                 document.body.appendChild(ta);
@@ -1092,7 +1070,6 @@
         });
 
         document.getElementById('resetBtn').addEventListener('click', () => {
-            // Simple reload to clear everything clean
             window.location.reload();
         });
 
@@ -1109,7 +1086,6 @@
             setupTagInput('lnameTagContainer', 'lnameInput', 'clearLName', lnameTags, 1);
             setupTagInput('titleTagContainer', 'titleInput', 'clearTitles', titleTags, 20);
             setupTagInput('industryKeywordsTagContainer', 'industryKeywordsInput', 'clearIndustryKeywords', industryKeywordsTags, 20);
-            setupTagInput('webKeywordsTagContainer', 'webKeywordsInput', 'clearWebKeywords', webKeywordsTags, 20);
             setupTagInput('domainTagContainer', 'domainInput', 'clearDomains', domainTags, 20);
 
             setupLocationInput('personCountryTagContainer', 'personCountryInput', 'personCountryDropdown', 'clearPersonCountries', personCountryTags, 'country');
